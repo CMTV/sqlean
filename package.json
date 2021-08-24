@@ -6,6 +6,10 @@
 
     "main": "dist/index.js",
     
+    "publishConfig": {
+        "@CMTV:registry": "https://npm.pkg.github.com"
+    },
+
     "scripts": {
         "prebuild": "node -e \"(require('fs').rmSync('dist', { force: true, recursive: true }))\"",
         "build": "tsc --p tsconfig-build.json"
