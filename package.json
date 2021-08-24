@@ -1,0 +1,24 @@
+{
+    "name": "sqlean",
+    "version": "1.0.0",
+    "author": "CMTV",
+    "license": "MIT",
+
+    "main": "dist/index.js",
+    
+    "scripts": {
+        "prebuild": "node -e \"(require('fs').rmSync('dist', { force: true, recursive: true }))\"",
+        "build": "tsc --p tsconfig-build.json"
+    },
+    
+    "devDependencies": {
+        "@types/better-sqlite3": "^7.4.0",
+        "@types/jest": "^27.0.1",
+        "ts-node": "^10.2.1",
+        "typescript": "^4.3.5"
+    },
+    "dependencies": {
+        "better-sqlite3": "^7.4.3",
+        "reflect-metadata": "^0.1.13"
+    }
+}
