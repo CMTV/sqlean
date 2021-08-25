@@ -6,7 +6,7 @@ export class InsertData
     table:          string;
     columnValues:   ColumnValue;
 
-    rewrite? =       false;
+    rewrite? =      false;
 }
 
 export function Insert(data: InsertData)

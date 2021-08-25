@@ -1,4 +1,5 @@
 <div align="center">
+  <p></p>
   <a href="https://github.com/CMTV/sqlean">
     <img height="70" src="sqlean.svg">
   </a>
@@ -8,7 +9,7 @@
 
 <p></p>
 
-SQLean (*/s_clean/*) is a simple SQLite database manager built on top of [better-sqlite3](https://www.npmjs.com/package/better-sqlite3) package. It's main purpose is to allow you to focus on writing **code**, not **queries**.
+SQLean (*/s_clean/*) is a simple SQLite database manager built on top of [better-sqlite3](https://www.npmjs.com/package/better-sqlite3) package. It's main purpose is to allow you to focus on writing **code** rather then messing with **queries**.
 
 Working with a database on a low level is a nightmare since you have to convert your data to database format, then to query strings and vice verca.
 
@@ -197,7 +198,118 @@ Db.Delete({
 
 ## Entity system
 
+The Entity system utilizes JS decorators and since it is an experimental feature you need to enable them in `tsconfig.json`:
 
+```json
+"compilerOptions": {
+    "experimentalDecorators": true
+}
+```
+
+### Creating entity
+
+The entity is just a class extending `Entity` abstract class with some decorators on class and properties:
+
+```typescript
+import { Column, Entity, PrimaryKey, Table } from "sqlean"
+
+@Table('customer')
+class Customer extends Entity 
+{
+    @PrimaryKey
+    @Column
+    customerId: string;
+
+    @Column
+    firstName: string;
+
+    @Column
+    secondName: string;
+
+    @Column
+    age: number;
+
+    @Column
+    isPro: boolean;
+}
+```
+
+You can also override `pre/postSave/Delete` methods to run additional queries when entity gets saved or deleted.
+
+### Saving and Updating entity
+
+Both saving (inserting) and updating entity is done via `save()` method. Calling it cause updating database values. Keep in mind that changing primary key columns will result in creating a new row in column when saving!
+
+```typescript
+// Creating entity instance
+
+let cmtv = new Customer;
+    cmtv.customerId = 'CMTV';
+    cmtv.firstName = 'Peter';
+ // cmtv.secondName = 'Radko' // `second_name` column allowed to be null  
+    cmtv.age = 23;
+    cmtv.isPro = true;
+
+// Inserting entity to database
+
+cmtv.save();
+```
+
+| customer_id | first_name | second_name | age | is_pro |
+|-------------|------------|-------------|-----|--------|
+| CMTV        | Peter      | *NULL*      | 23  | 1      |
+
+```typescript
+// Updating entity
+
+cmtv.secondName = 'Radko';
+cmtv.isPro = false;
+
+cmtv.save();
+```
+
+| customer_id | first_name | second_name | age | is_pro |
+|-------------|------------|-------------|-----|--------|
+| CMTV        | Peter      | Radko       | 23  | 0      |
+
+
+### Retrieving entity
+
+Use `getById()` static method of your entity class to retrieve rows from database. The return value is an instance of entity class or `null` if no rows were found.
+
+First argument can be a simple value for single primary key or an array of values for multi-column primary keys.
+Optional second argument accepts column names to retrieve in case you don't wont to load heavy data from database.
+
+```typescript
+let cmtv = Customer.getById('CMTV');
+
+let shortCmtv = Custom.getById('CMTV', ['customerId', 'age']);
+```
+
+```
+Customer {
+  customerId: 'CMTV', 
+  firstName: 'Peter', 
+  secondName: 'Radko',
+  age: 23,
+  isPro: 0
+}
+
+Customer { customerId: 'CMTV', age: 23 }
+```
+
+### Deleting entity
+
+There are two ways to delete an entity: through its class or directly from instance:
+
+```typescript
+Customer.delete('CMTV');
+
+/* OR */
+
+let cmtv = Customer.getById('CMTV');
+cmtv.delete();
+```
 
 ## Using better-sqlite3
 

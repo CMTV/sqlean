@@ -1,9 +1,11 @@
 import "reflect-metadata";
 
-import { Db, FuncFromDb, FuncToDb } from "../Db";
+import { Db, DbValue, FuncFromDb, FuncToDb } from "../Db";
 import { SelectColumns } from "../query/Select";
 import { AND, WhereClause } from "../query/Where";
 import { Util } from "../Util";
+
+export type EntityId = DbValue | DbValue[];
 
 export class ColumnInfo
 {
@@ -86,19 +88,42 @@ export abstract class Entity
         this.postDelete();
     }
 
-    static getById<T>(this: new () => T, id, columns: SelectColumns = '*'): T
+    //
+    //
+    //
+
+    static buildWhereId(id: EntityId)
     {
         let entityData = EntityData.getFrom(this.prototype.constructor);
-
         if (!Array.isArray(id)) id = [id];
 
         let clauses: WhereClause[] = entityData.primaryKey.map( (pKey, i) => ['@' + pKey, '=', entityData.columns[pKey].toDb(id[i])] );
-        let where = AND(...clauses);
+
+        return AND(...clauses);
+    }
+
+    static delete(id: EntityId)
+    {
+        let entityData = EntityData.getFrom(this.prototype.constructor);
+        //@ts-ignore
+        let whereId = this.buildWhereId(id);
+
+        Db.Delete({
+            table: entityData.table,
+            where: whereId
+        });
+    }
+
+    static getById<T>(this: new () => T, id: EntityId, columns: SelectColumns = '*'): T
+    {
+        let entityData = EntityData.getFrom(this.prototype.constructor);
+        //@ts-ignore
+        let whereId = this.buildWhereId(id);
 
         let dbResult = Db.Select.Get({
             table: entityData.table,
             columns: columns,
-            where: where
+            where: whereId
         });
 
         // ACCESSING STATIC METHOD FROM CHILD INSTANCE (FALLBACK TO PARENT)

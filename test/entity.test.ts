@@ -38,7 +38,7 @@ let logEntityData = () =>
 
 let getById = () =>
 {
-    let cmtv = Customer.getById('CMTV');
+    let cmtv = Customer.getById([5]);
     cmtv.getFullName();
 }
 
