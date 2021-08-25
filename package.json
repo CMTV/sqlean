@@ -4,6 +4,15 @@
     "author": "CMTV",
     "license": "MIT",
 
+    "keywords": [
+        "sql",
+        "sqlite",
+        "entity",
+        "sql-entity",
+        "database",
+        "db"
+    ],
+
     "main": "dist/index.js",
     
     "publishConfig": {

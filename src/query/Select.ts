@@ -30,7 +30,7 @@ export class PreparedSelect
 
 export class Select
 {
-    static prepare(data: SelectData): PreparedSelect
+    static Prepare(data: SelectData): PreparedSelect
     {
         let result = new PreparedSelect;
         data = {...new SelectData, ...data};
@@ -59,7 +59,7 @@ export class Select
 
     static Get(data: SelectData): any
     {
-        let prepareResult = this.prepare(data);
+        let prepareResult = this.Prepare(data);
         let result = prepareResult.statement.get(prepareResult.whereParams) || null;
 
         return Util.objToCamelCase(result);
@@ -67,7 +67,7 @@ export class Select
 
     static All(data: SelectData): any[]
     {
-        let prepareResult = this.prepare(data);
+        let prepareResult = this.Prepare(data);
         let result = prepareResult.statement.all(prepareResult.whereParams);
 
         if (result.length === 0)
@@ -82,12 +82,8 @@ export class Select
 
     static getSqlColumns(columns: SelectColumns): string
     {
-        return (
-            Array.isArray(columns) ?
-                columns.map(column => Util.toSnakeCase(column)).join(', ')
-                :
-                columns
-        );
+        if (!Array.isArray(columns)) columns = [columns];
+        return columns.map(column => Util.toSnakeCase(column)).join(', ');
     }
 
     static getSqlOrder(order: Order)

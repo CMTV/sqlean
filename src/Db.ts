@@ -34,36 +34,3 @@ export class Db
 }
 
 export const DB = new Db;
-
-Db.Open('test/data.db');
-
-/*let result = Db.Select.All({
-    table: 'customer',
-    columns: '*',
-    where: AND(['@age', '>=', 10], OR(['lol', '=', 5], ['@firstName', '=', 'Peter']))
-});*/
-
-//let result = Db.Select.All({ table: 'customer', columns: '*', where: [5, '=', 5] });
-
-//console.log(result);
-
-/*Db.Update({
-    table: 'customer',
-    columnValues: { isPro: 1 },
-    where: ['@firstName', '=', 'Николай']
-});*/
-
-/*let newUser = {
-    customerId: 'nnagibin',
-    firstName: 'Николай',
-    secondName: 'Нагибин',
-    age: 25,
-    isPro: 1
-}
-
-Db.Insert({ table: 'customer', columnValues: newUser });*/
-
-/*Db.Delete({
-    table: 'customer',
-    where: ['@isPro', '=', 1]
-});*/

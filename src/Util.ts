@@ -9,15 +9,12 @@ export class Util
 
     static objToCamelCase(obj)
     {
-        if (!obj) return obj;
+        if (!obj) return null;
 
-        Object.keys(obj).forEach(key =>
-        {
-            obj[Util.toCamelCase(key)] = obj[key];
-            delete obj[key];
-        });
+        let result = {};
+        Object.keys(obj).forEach(key => result[Util.toCamelCase(key)] = obj[key]);
 
-        return obj;
+        return result;
     }
 
     static toSnakeCase(str: string)
