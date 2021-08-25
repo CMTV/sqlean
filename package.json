@@ -1,6 +1,6 @@
 {
     "name": "sqlean",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "author": "CMTV",
     "license": "MIT",
 
@@ -24,6 +24,7 @@
     },
 
     "scripts": {
+        "prebuild": "node -e \"(require('fs').rmSync('dist', { force: true, recursive: true }))\"",
         "build": "tsc --p tsconfig-build.json"
     },
     
