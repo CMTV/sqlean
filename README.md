@@ -33,7 +33,11 @@ Before you start:
     * [Building `WHERE` clauses](#building-where-clauses)
     * [Select](#select)
     * [Update and Delete](#update-and-delete)
-4. [**Entity system**](#entity-system)
+4. [Entity system](#entity-system)
+    * [Creating entity](#creating-entity)
+    * [Saving and Updating entity](#saving-and-updating-entity)
+    * [Retrieving entity](#retrieving-entity)
+    * [Deleting entity](#deleting-entity)
 5. [Using better-sqlite3](#using-better-sqlite3)
 
 ## Install
@@ -51,7 +55,7 @@ First of all, we need to open the database file. It must be done before calling 
 ```typescript
 import { Db } from "sqlean";
 
-Db.Open('data.db')
+Db.Open('data.db');
 
 // Do stuff with database
 // ...

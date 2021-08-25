@@ -1,8 +1,10 @@
 {
     "name": "sqlean",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": "CMTV",
     "license": "MIT",
+
+    "description": "Simple SQLite database manager. Focus on writing code, rather then messing with queries.",
 
     "keywords": [
         "sql",
@@ -12,6 +14,11 @@
         "database",
         "db"
     ],
+
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/CMTV/sqlean"
+    },
 
     "main": "dist/index.js",
     
