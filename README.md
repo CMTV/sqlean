@@ -1,18 +1,14 @@
-<div style="display: flex; align-items: center; gap: 30px;">
-  <a href="https://gulpjs.com">
-    <img height="70" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png">
+<div align="center">
+  <a href="https://github.com/CMTV/sqlean">
+    <img height="70" src="sqlean.svg">
   </a>
-  <div>
-    <p style="font-size: 220%; margin-bottom: 0; font-weight: bold;">SQLean</p>
-    <p style="font-size: 120%">Write <strong>Code</strong>, not <strong>Queries</strong></p>
-  </div>
+  <p></p>
+  <h1>SQLean<p></p></h1>
 </div>
 
 <p></p>
 
-#
-
-SQLean (*/s_clean/*) is a simple SQLite database manager built on top of [better-sqlite3](https://www.npmjs.com/package/better-sqlite3) package.
+SQLean (*/s_clean/*) is a simple SQLite database manager built on top of [better-sqlite3](https://www.npmjs.com/package/better-sqlite3) package. It's main purpose is to allow you to focus on writing **code**, not **queries**.
 
 Working with a database on a low level is a nightmare since you have to convert your data to database format, then to query strings and vice verca.
 
@@ -144,7 +140,7 @@ let cmtv = Db.Select.Get({
 });
 ```
 
-```console
+```
 { customerId: 'cmtv', firstName: 'Peter', secondName: null, isPro: 1 }
 ```
 
@@ -158,7 +154,7 @@ let rows = Db.Select.All({
 });
 ```
 
-```console
+```
 [
   { customerId: 'nnagibin', age: 25 },
   { customerId: 'cmtv', age: 23 }     
@@ -178,7 +174,7 @@ let prepared = Db.Select.Prepare({
 let firstNames = prepared.statement.pluck().all(prepared.whereParams);
 ```
 
-```console
+```
 [ 'Nicholas', 'Peter' ]
 ```
 
