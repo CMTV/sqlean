@@ -24,7 +24,6 @@
     },
 
     "scripts": {
-        "prebuild": "node -e \"(require('fs').rmSync('dist', { force: true, recursive: true }))\"",
         "build": "tsc --p tsconfig-build.json"
     },
     
