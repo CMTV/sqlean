@@ -31,12 +31,15 @@ export class Util
     {
         switch (typeof src)
         {
+            case 'string':  return '' + src;
+
             case 'boolean':
+            case 'number':    
                 return +src;
-            case 'object':
-                return JSON.stringify(src);
-            default:
-                return src || null;
+
+            case 'object':  return JSON.stringify(src);
+
+            default: return null;
         }
     }
 
