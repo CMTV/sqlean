@@ -27,6 +27,17 @@ class Customer extends Entity
     }
 }
 
+@Table('movie')
+class Movie extends Entity
+{
+    @PrimaryKey
+    @Column
+    movieId: number;
+
+    @Column
+    title: string;
+}
+
 //
 //
 //
@@ -34,35 +45,7 @@ class Customer extends Entity
 let logEntityData = () =>
 {
     console.log(Customer.entityData);
+    console.log(Movie.entityData);
 }
 
-let getById = () =>
-{
-    let cmtv = Customer.getById([5]);
-    cmtv.getFullName();
-}
-
-let save = () =>
-{
-    let newCustomer = new Customer;
-        newCustomer.customerId = 'newCustomer';
-        newCustomer.firstName = 'John'
-        newCustomer.age = 38;
-        newCustomer.isPro = true;
-    
-    newCustomer.save();
-}
-
-let deleteEntity = () =>
-{
-    let newCustomer = Customer.getById('newCustomer');
-
-    if (newCustomer)
-        newCustomer.delete();
-}
-
-//
-//
-//
-
-deleteEntity();
+logEntityData();

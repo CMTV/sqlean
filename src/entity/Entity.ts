@@ -39,8 +39,7 @@ export class EntityData
 
 export abstract class Entity
 {
-    static entityType;
-    static entityData = new EntityData;
+    static entityData;
 
     protected preSave()     {};
     protected postSave()    {};
