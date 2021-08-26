@@ -2,50 +2,28 @@ import { Db, Column, Entity, PrimaryKey, Table, DB } from "../src/index";
 
 Db.Open('test/data.db');
 
-@Table('customer')
-class Customer extends Entity
+export class MyObj
+{
+    someStr: string;
+    someNum: number;
+    someArr: string[];
+}
+
+@Table('test_table')
+class TestEntity extends Entity
 {
     @PrimaryKey
     @Column
-    customerId: string;
-    
-    @Column
-    firstName: string;
+    testId: string;
 
     @Column
-    secondName: string;
-
-    @Column
-    age: number;
-
-    @Column
-    isPro: boolean;
-
-    getFullName()
-    {
-        console.log(this.firstName + (' ' + this.secondName || ''));
-    }
+    obj: MyObj;
 }
 
-@Table('movie')
-class Movie extends Entity
-{
-    @PrimaryKey
-    @Column
-    movieId: number;
+let testObj = new TestEntity;
+    testObj.testId = 'id1';
+    testObj.obj = { someStr: 'sdf', someNum: 5, someArr: ['first', 'second'] }
 
-    @Column
-    title: string;
-}
+testObj.save();
 
-//
-//
-//
-
-let logEntityData = () =>
-{
-    console.log(Customer.entityData);
-    console.log(Movie.entityData);
-}
-
-logEntityData();
+console.log(TestEntity.getById('id1'));

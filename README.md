@@ -202,11 +202,12 @@ Db.Delete({
 
 ## Entity system
 
-The Entity system utilizes JS decorators and since it is an experimental feature you need to enable them in `tsconfig.json`:
+The Entity system utilizes JS decorators and since it is an experimental feature you need to enable them in `tsconfig.json`.
 
 ```json
 "compilerOptions": {
-    "experimentalDecorators": true
+    "experimentalDecorators": true, // Decorators support
+    "emitDecoratorMetadata": true   // Used to cast db values to class properties with correct types
 }
 ```
 

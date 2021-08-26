@@ -59,7 +59,7 @@ export class Util
             {
                 let obj = new Type();
                 let json = JSON.parse(dbValue);
-
+                
                 Object.keys(json).forEach(key => obj[key] = json[key]);
 
                 return obj;

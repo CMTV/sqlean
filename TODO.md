@@ -1,3 +1,5 @@
+* Add `postGet` method (to retrieve relations, init non-column properties and similar stuff)
+
 * Write section "Advanced Entities"
     * Split table on few entities with inheritance
     * "ColumnCustom" annotation
