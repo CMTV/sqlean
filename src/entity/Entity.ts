@@ -47,6 +47,9 @@ export abstract class Entity
     protected preDelete()   {};
     protected postDelete()  {};
 
+    protected preGet()      {};
+    protected postGet()     {};
+
     //
 
     save()
@@ -136,6 +139,9 @@ export abstract class Entity
 
         let entity = new this();
 
+        //@ts-ignore
+        entity.preGet();
+
         Object.keys(dbResult).forEach(columnKey =>
         {
             // ACCESSING STATIC PROPERTY FROM CHILD INSTANCE (FALLBACK TO PARENT)
@@ -147,6 +153,9 @@ export abstract class Entity
 
             entity[columnKey] = value;
         });
+
+        //@ts-ignore
+        entity.postGet();
 
         return entity;
     }

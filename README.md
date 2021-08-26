@@ -240,7 +240,7 @@ class Customer extends Entity
 }
 ```
 
-You can also override `pre/postSave/Delete` methods to run additional queries when entity gets saved or deleted.
+You can also override `pre/postSave/Delete/Get` methods to run additional queries when entity gets saved, deleted or retrieved from database.
 
 ### Saving and Updating entity
 

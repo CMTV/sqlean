@@ -18,6 +18,11 @@ class TestEntity extends Entity
 
     @Column
     obj: MyObj;
+
+    postGet()
+    {
+        this.obj.someNum = 1337;
+    }
 }
 
 let testObj = new TestEntity;
