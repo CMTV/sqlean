@@ -171,12 +171,11 @@ Notice how came casel column names automatically convert to snake case database 
 Return values can be plucked:
 
 ```typescript
-let prepared = Db.Select.Prepare({
+Db.Select.All({
     table:      'customer',
     columns:    ['firstName'],
+    pluck:      true
 });
-
-let firstNames = prepared.statement.pluck().all(prepared.whereParams);
 ```
 
 ```

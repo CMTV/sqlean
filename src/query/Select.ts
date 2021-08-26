@@ -20,6 +20,8 @@ export class SelectData
 
     limit?:     number;
     offset?:    number;
+
+    pluck? = false;
 }
 
 export class PreparedSelect
@@ -49,9 +51,9 @@ export class Select
         `;
 
         // For Debug
-        //console.log(sql);
+        // console.log(sql);
 
-        result.statement =      DB._db.prepare(sql);
+        result.statement =      DB._db.prepare(sql).pluck(data.pluck);
         result.whereParams =    whereResults.params;
 
         return result;
