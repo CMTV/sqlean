@@ -29,6 +29,8 @@ export class Util
 
     static defaultToDb(src): DbValue
     {
+        if (src === null) return null;
+
         switch (typeof src)
         {
             case 'string':  return '' + src;

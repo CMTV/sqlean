@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.12
+
+- Fixed incorrect `null` -> `"null"` conversion when using entities.
+
 ## 1.0.11
 
 - Fixed incorrect default conversion from entity property "null-like" values to database values.
