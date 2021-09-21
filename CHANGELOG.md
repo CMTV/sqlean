@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.13
+
+- Fixed error-causing attempt to convert `null` to camel-case object in `Util.objToCamelCase()` when using `Db.Select()`.
+
 ## 1.0.12
 
 - Fixed incorrect `null` -> `"null"` conversion when using entities.

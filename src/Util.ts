@@ -9,8 +9,7 @@ export class Util
 
     static objToCamelCase(obj)
     {
-        if (typeof obj !== 'object')
-            return obj;
+        if (obj === null || typeof obj !== 'object') return obj;
 
         let result = {};
         Object.keys(obj).forEach(key => result[Util.toCamelCase(key)] = obj[key]);
